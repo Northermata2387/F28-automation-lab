@@ -1,7 +1,7 @@
 const {By} = require('selenium-webdriver');
 
 const addMovie = async (driver) => {
-    await driver.findElement(By.xpath('//input')).sendKeys('City of Children')
+    await driver.findElement(By.xpath('//input')).sendKeys('City of Lost Children')
     await driver.sleep(1000)
 
     await driver.findElement(By.xpath('//button')).click()
@@ -18,9 +18,9 @@ const crossMovie = async (driver) => {
     await driver.findElement(By.xpath('//span')).click()
     await driver.sleep(1000)
 
-    const message = await driver.findElement(By.xpath('//*[@id="message"]'))
+    const checked = await driver.findElement(By.xpath('//span[contains(@class, "checked")]'));
 
-    const displayed = message.isDisplayed();
+    const displayed = checked.isDisplayed();
 
     expect(displayed).toBeTruthy()
 }
@@ -30,9 +30,9 @@ const deleteMovie = async (driver) => {
     console.log(x)
     await driver.sleep(1000)
 
-    const message = await driver.findElement(By.xpath('//*[@id="message"]'))
+    const findMovie = await driver.findElement(By.xpath('//ul[contains(text)]'));
 
-    const displayed = message.isDisplayed();
+    const displayed = findMovie.isDisplayed();
 
     expect(displayed).toBeTruthy()
 }
